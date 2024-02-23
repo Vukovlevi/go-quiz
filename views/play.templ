@@ -1,0 +1,21 @@
+package views
+
+import (
+    "fmt"
+    "strconv"
+
+    "github.com/vukovlevi/kviz-go/db"
+)
+
+templ PlayIndex(games *[]db.Game) {
+    <div class="games">
+        for _, game := range *games {
+            <div class="game">
+                <h3>{game.Title}</h3>
+                <p>{game.Topic}</p>
+                <span>{strconv.Itoa(game.Length)} kérdés</span>
+                <a href={templ.URL(fmt.Sprintf("/play/%d", game.Id))}>Csapassuk</a>
+            </div>
+        }
+    </div>
+}
