@@ -8,6 +8,8 @@ import (
 )
 
 templ PlayIndex(games *[]db.Game) {
+    @Nav()
+    @Header()
     <div class="games">
         for _, game := range *games {
             <div class="game">
@@ -16,6 +18,45 @@ templ PlayIndex(games *[]db.Game) {
                 <span>{strconv.Itoa(game.Length)} kérdés</span>
                 <a href={templ.URL(fmt.Sprintf("/play/%d", game.Id))}>Csapassuk</a>
             </div>
+        }
+    </div>
+    @Footer()
+}
+
+templ PlayGame(game *db.Game) {
+    <div class="play">
+      <h3>{game.Title}</h3>
+      <span>{game.Topic}</span>
+      <input type="hidden" id="game-id" name="game-id" value={strconv.Itoa(game.Id)}></input>
+      <button hx-get={fmt.Sprintf("/play/%d/%d", game.Id, 0)} hx-swap="outerHTML">Indítás</button>
+    </div>
+}
+
+templ Question(question *db.Question, index int) {
+    <div id="game-container">
+        <p>{question.Question}</p>
+        <div class="answers">
+            for i, answer := range question.Answers {
+                <input type="hidden" id={fmt.Sprintf("answer-index-%d", i)} class="answer-index" name="answer-index" value={strconv.Itoa(i)}></input>
+                <button hx-post={fmt.Sprintf("/validate/%d", index)} hx-include={fmt.Sprintf("#game-id, #answer-index-%d", i)} hx-target="#game-container" hx-swap="outerHTML" name="answer" value={answer} type="submit">{answer}</button>
+            }
+        </div>
+    </div>
+}
+
+templ Answer(rightAnswer bool, gameId, nextIndex int) {
+    <div id="game-container">
+        if rightAnswer {
+            <p class="correct">A válasz helyes</p>
+        } else {
+            <p class="incorrect">A válasz helytelen</p>
+        }
+
+        if nextIndex != -1 {
+            <button hx-get={fmt.Sprintf("/play/%d/%d", gameId, nextIndex)} hx-target="#game-container" hx-swap="outerHTML">Következő kérdés</button>
+        } else {
+            <p>Játék vége</p>
+            <a href="/play">Visszatérés a játékokhoz</a>
         }
     </div>
 }

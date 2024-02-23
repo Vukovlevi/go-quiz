@@ -99,11 +99,35 @@ footer {
   font-size: 1.2rem;
 }
 
+#game-id {
+  visibility: hidden;
+}
+
+.answers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.correct {
+  --color: green;
+}
+
+.incorrect {
+  --color: orange;
+}
+
+.error {
+  --color: red;
+}
+
+.correct,
+.incorrect,
 .error {
   width: fit-content;
   text-align: center;
   margin: auto;
-  background-color: red;
+  background-color: var(--color);
   color: black;
   border-radius: 10px;
+  padding: 1rem;
 }

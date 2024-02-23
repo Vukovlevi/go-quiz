@@ -16,7 +16,7 @@ templ Default(compontent templ.Component) {
   </html>
 }
 
-templ Index() {
+templ Nav() {
   <nav>
     <ul>
       <li><a href="/">Főoldal</a></li>
@@ -24,16 +24,31 @@ templ Index() {
       <li><a href="/new">Új kérdés létrehozása</a></li>
     </ul>
   </nav>
+}
+
+templ Header() {
   <header>
     <h1>Kvíz - Go</h1>
     <p>Egy gyors egyszerű kvíz alkalmazás</p>
   </header>
+}
+
+templ Footer() {
+  <footer>
+    <p>Készítő: Szabó-Vukov Levente</p>
+    <p>Minden jog fenntartva. © 2024</p>
+  </footer>
+}
+
+templ Index() {
+  @Nav()
+  @Header()
   <main>
     <section>
       <article>
         <h2>Játssz</h2>
         <p>Most nagyon jó játszani ezzel a szarral</p>
-        <a hx-get="/play" hx-target="main" hx-swap="outerHTML">Akkor játszok</a>
+        <a href="/play">Akkor játszok</a>
       </article>
       <article>
         <h2>Csinálj saját kérdést</h2>
@@ -43,8 +58,5 @@ templ Index() {
     </section>
     <aside>Örök élet ingyen sör!</aside>
   </main>
-  <footer>
-    <p>Készítő: Szabó-Vukov Levente</p>
-    <p>Minden jog fenntartva. © 2024</p>
-  </footer>
+  @Footer()
 }
