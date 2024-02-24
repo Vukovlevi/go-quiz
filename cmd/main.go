@@ -16,6 +16,7 @@ func main() {
 	e.GET("/play/:id", routes.HandlePlayById)
 	e.GET("/play/:id/:index", routes.HandleQuestionByIndex)
 	e.POST("/validate/:index", routes.ValidateHandler)
+	e.GET("/new", routes.HandleNewQuestionIndex)
 
 	e.Static("/", "public")
 

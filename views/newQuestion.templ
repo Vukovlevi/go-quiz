@@ -1,0 +1,72 @@
+package views
+
+templ NewQuestionIndex() {
+    @Nav()
+    @Header()
+    <form>
+      <h3>Új kérdés hozzáadása</h3>
+      <div class="form-element">
+        <label for="question">Kérdés:</label>
+        <input
+          type="text"
+          placeholder="Kérdés"
+          id="question"
+          name="question"
+          required
+        />
+      </div>
+      <div class="form-element">
+        <label for="answer-1">Válasz1:</label>
+        <input
+          type="text"
+          placeholder="Első válasz"
+          id="answer-1"
+          name="answer-1"
+          required
+        />
+      </div>
+      <div class="form-element">
+        <label for="answer-2">Válasz2:</label>
+        <input
+          type="text"
+          placeholder="Második válasz"
+          id="answer-2"
+          name="answer-2"
+          required
+        />
+      </div>
+      <div class="form-element">
+        <label for="answer-3">Válasz3:</label>
+        <input
+          type="text"
+          placeholder="Harmadik válasz"
+          id="answer-3"
+          name="answer-3"
+          required
+        />
+      </div>
+      <div class="form-element">
+        <label for="answer-4">Válasz4:</label>
+        <input
+          type="text"
+          placeholder="Negyedik válasz"
+          id="answer-4"
+          name="answer-4"
+          required
+        />
+      </div>
+      <div class="form-element">
+        <p>Helyes válasz:</p>
+        <input type="radio" name="right-answer" id="right-answer-1" value="0" />
+        <label for="right-answer-1">1</label>
+        <input type="radio" name="right-answer" id="right-answer-2" value="1" />
+        <label for="right-answer-2">2</label>
+        <input type="radio" name="right-answer" id="right-answer-3" value="2" />
+        <label for="right-answer-3">3</label>
+        <input type="radio" name="right-answer" id="right-answer-4" value="3" />
+        <label for="right-answer-4">4</label>
+      </div>
+      <button type="submit" class="submit-button">Kérdés létrehozása</button>
+    </form>
+    @Footer()
+}
