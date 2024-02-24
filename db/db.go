@@ -49,3 +49,8 @@ func GetGameById(id int) (*Game, error) {
 
 	return nil, fmt.Errorf("Game %d not found", id)
 }
+
+func AddQuestion(question Question) {
+	questions = append(questions, question)
+	games[0].Length++
+}

@@ -3,7 +3,7 @@ package views
 templ NewQuestionIndex() {
     @Nav()
     @Header()
-    <form>
+    <form hx-post="/new" hx-swap="outerHTML">
       <h3>Új kérdés hozzáadása</h3>
       <div class="form-element">
         <label for="question">Kérdés:</label>
@@ -69,4 +69,8 @@ templ NewQuestionIndex() {
       <button type="submit" class="submit-button">Kérdés létrehozása</button>
     </form>
     @Footer()
+}
+
+templ AddedQuestion() {
+  <div class="success">Kérdés sikeresen hozzáadva</div>
 }
