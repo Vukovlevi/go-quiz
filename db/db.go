@@ -1,46 +1,27 @@
 package db
 
-import "fmt"
+import (
+	"fmt"
 
-type Question struct {
-	Question string
-	Answers []string
-	RightAnswerIndex int
-}
+	"github.com/vukovlevi/kviz-go/models"
+)
 
-type Game struct {
-	Id int
-	Title string
-	Topic string
-	Length int
-	Questions *[]Question
-}
-
-var questions []Question
-var games []Game
+var questions []models.Question
+var games []models.Game
 
 func PopulateQuestions() {
-	q1 := Question{"Mennyi 2+2?", []string{"1", "2", "3", "4"}, 3}
-	questions = append(questions, q1)
-	q2 := Question{"Mi a legnagyobb magyar trauma?", []string{"Mohács", "Trianon", "Gáspár Győző", "Gyúrcsány"}, 1}
-	questions = append(questions, q2)
-	q3 := Question{"Láttál-e már valaha csipkebokor rózsát?", []string{"Igen", "Nem", "Csipkebokor rózsa közt két szál majorannát", "Mi az a csipkebokor rózsa?"}, 2}
-	questions = append(questions, q3)
-	q4 := Question{"11, 12, 13...", []string{"Az ipari a legfaszább a világon", "14", "???", "14, 15, 16"}, 0}
-	questions = append(questions, q4)
-	q5 := Question{"Mi a vektor?", []string{"A mátrix titka", "Irányítot szakasz", "Viktor", "Orbán"}, 1}
-	questions = append(questions, q5)
+    questions = models.PopulateQuestions()
 }
 
 func PopulateGames() {
-	games = append(games, Game{1, "A nagy kvíz", "Minden ami magyar", len(questions), &questions})
+    games = append(games, models.Game{Id: 1, Title: "A nagy kvíz", Topic: "Minden ami magyar", Length: len(questions), Questions: &questions})
 }
 
-func GetGames() *[]Game {
+func GetGames() *[]models.Game {
 	return &games
 }
 
-func GetGameById(id int) (*Game, error) {
+func GetGameById(id int) (*models.Game, error) {
 	for _, game := range games {
 		if game.Id == id {
 			return &game, nil
@@ -50,7 +31,7 @@ func GetGameById(id int) (*Game, error) {
 	return nil, fmt.Errorf("Game %d not found", id)
 }
 
-func AddQuestion(question Question) {
+func AddQuestion(question models.Question) {
 	questions = append(questions, question)
 	games[0].Length++
 }

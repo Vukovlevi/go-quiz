@@ -5,6 +5,7 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/vukovlevi/kviz-go/db"
+	"github.com/vukovlevi/kviz-go/models"
 	"github.com/vukovlevi/kviz-go/views"
 )
 
@@ -26,8 +27,8 @@ func HandleNewQuestion(c echo.Context) error {
 	if question == "" || answer1 == "" || answer2 == "" || answer3 == "" || answer4 == "" {
 		return render(c, views.Error("Hiányzó paraméter"))
 	}
-	
-	db.AddQuestion(db.Question{Question: question, Answers: []string{answer1, answer2, answer3, answer4}, RightAnswerIndex: rightAnswerIndex})
+
+	db.AddQuestion(models.Question{Question: question, Answers: []string{answer1, answer2, answer3, answer4}, RightAnswerIndex: rightAnswerIndex})
 
 	return render(c, views.AddedQuestion())
 }

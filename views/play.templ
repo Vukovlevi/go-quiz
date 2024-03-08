@@ -4,10 +4,10 @@ import (
     "fmt"
     "strconv"
 
-    "github.com/vukovlevi/kviz-go/db"
+    "github.com/vukovlevi/kviz-go/models"
 )
 
-templ PlayIndex(games *[]db.Game) {
+templ PlayIndex(games *[]models.Game) {
     @Nav()
     @Header()
     <div class="games">
@@ -23,7 +23,7 @@ templ PlayIndex(games *[]db.Game) {
     @Footer()
 }
 
-templ PlayGame(game *db.Game) {
+templ PlayGame(game *models.Game) {
     <div class="play">
       <h3>{game.Title}</h3>
       <span>{game.Topic}</span>
@@ -32,7 +32,7 @@ templ PlayGame(game *db.Game) {
     </div>
 }
 
-templ Question(question *db.Question, index int) {
+templ Question(question *models.Question, index int) {
     <div id="game-container">
         <p>{question.Question}</p>
         <div class="answers">
