@@ -1,0 +1,28 @@
+package views
+
+templ LoginSuccess() {
+    <div class="success">
+        Sikeres bejelentkezés!
+    </div>
+}
+
+templ MustLogin() {
+    <div class="error">
+        Be kell jelentkezned ennek a funkciónak az eléréséhez!
+    </div>
+    <a href="/login">Bejelentkezés</a>
+}
+
+templ LoginIndex() {
+    @Nav()
+    @Header()
+    <form hx-post="/login" hx-target="#is-success" hx-swap="innerHTML">
+        <label for="username">Felhasználónév</label>
+        <input type="text" name="username" id="username" placeholder="Felhasználónév"></input>
+        <label for="password">Jelszó</label>
+        <input type="password" name="password" id="password" placeholder="Jelszó"></input>
+        <button type="submit">Bejelentkezés</button>
+    </form>
+    <div id="is-success"></div>
+    @Footer()
+}

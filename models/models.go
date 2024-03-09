@@ -19,7 +19,6 @@ type User struct {
     Password string
 }
 
-
 func PopulateQuestions() []Question {
     var questions []Question
 	q1 := Question{"Mennyi 2+2?", []string{"1", "2", "3", "4"}, 3}
